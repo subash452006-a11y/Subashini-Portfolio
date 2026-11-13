@@ -77,6 +77,9 @@ ul { list-style: none; padding: 0; margin: 0; }
 .projects li { padding: 1.75rem 0; border-top: 1px solid rgba(246,243,234,.25); }
 .projects li:last-child { border-bottom: 1px solid rgba(246,243,234,.25); }
 .meta { color: var(--muted); font-size: .95rem; margin-bottom: .5rem; }
+.shot { display: block; width: 100%; max-width: 38rem; height: auto; margin: 1rem 0; border: 2px solid rgba(246,243,234,.25); border-radius: 8px; }
+.case { max-width: 38rem; margin: 0 0 .5rem; }
+.case strong { color: var(--turmeric); }
 .links a { margin-right: 1.25rem; font-weight: 700; }
 
 .skills { display: flex; flex-wrap: wrap; gap: .75rem; }
