@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Subashini | Web Developer Portfolio</title>
   <meta name="description" content="Portfolio of Subashini, a web developer who builds clear, fast and accessible websites.">
+  <meta name="theme-color" content="#14183a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -12,7 +13,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip" href="#work">Skip to projects</a>
+  <!-- Kolam motif, defined once and reused by the dividers below -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="kolam-motif" viewBox="-40 -40 80 80" overflow="visible">
+        <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M0 0C12-10 14-30 0-34C-14-30-12-10 0 0Z"/>
+          <path d="M0 0C12-10 14-30 0-34C-14-30-12-10 0 0Z" transform="rotate(90)"/>
+          <path d="M0 0C12-10 14-30 0-34C-14-30-12-10 0 0Z" transform="rotate(180)"/>
+          <path d="M0 0C12-10 14-30 0-34C-14-30-12-10 0 0Z" transform="rotate(270)"/>
+        </g>
+        <g fill="currentColor">
+          <circle r="2.5"/>
+          <circle cx="26" cy="26" r="2.2"/><circle cx="-26" cy="26" r="2.2"/>
+          <circle cx="26" cy="-26" r="2.2"/><circle cx="-26" cy="-26" r="2.2"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#main">Skip to main content</a>
 
   <header class="hero">
     <canvas id="kolam" aria-hidden="true"></canvas>
@@ -24,26 +44,36 @@
     <div class="hero-body">
       <p class="en-name">Subashini, web developer</p>
       <h1><span lang="ta">சுபாஷினி</span><span class="sr"> (Subashini)</span></h1>
-      <p class="intro" id="intro-en">I'm Subashini. I build websites that load fast, read clearly and work on every phone.</p>
-      <p class="intro" id="intro-ta" lang="ta" hidden>நான் சுபாஷினி. வேகமாகவும் தெளிவாகவும் எல்லா போனிலும் வேலை செய்யும் இணையதளங்களை உருவாக்குகிறேன்.</p>
-      <button class="lang" id="toggle" type="button" aria-pressed="false">தமிழில் படி</button>
+      <div aria-live="polite">
+        <p class="intro" id="intro-en">I'm Subashini. I build websites that load fast, read clearly and work on every phone.</p>
+        <p class="intro" id="intro-ta" lang="ta" hidden>நான் சுபாஷினி. வேகமாகவும் தெளிவாகவும் எல்லா போனிலும் வேலை செய்யும் இணையதளங்களை உருவாக்குகிறேன்.</p>
+      </div>
+      <button class="lang" id="toggle" type="button" lang="ta" aria-controls="intro-en intro-ta">தமிழில் படி</button>
     </div>
   </header>
 
-  <main>
+  <main id="main" tabindex="-1">
     <section id="about" aria-labelledby="about-h">
       <h2 id="about-h">About</h2>
-      <p>I'm a third-year B.E. Computer Science and Engineering student at Government College of Engineering, Bodinayakkanur, learning web development by building real things. I care about simple layouts, readable text and pages that stay usable on slow connections. This portfolio uses plain HTML, CSS and a little JavaScript.</p>
+      <p>I'm a third-year B.E. Computer Science and Engineering student at Government College of Engineering, Bodinayakkanur, learning web development by building real things.</p>
+      <p>Most of my projects start with an everyday problem, like making a small monthly budget last or choosing a career path, and turn it into a simple tool. I care about simple layouts, readable text and pages that stay usable on slow connections.</p>
     </section>
+
+    <div class="kolam-divider" aria-hidden="true">
+      <svg viewBox="0 0 360 80" focusable="false">
+        <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".55">
+          <line x1="10" y1="40" x2="74" y2="40"/><line x1="286" y1="40" x2="350" y2="40"/>
+        </g>
+        <use href="#kolam-motif" x="80" y="20" width="40" height="40"/>
+        <use href="#kolam-motif" x="140" y="0" width="80" height="80"/>
+        <use href="#kolam-motif" x="240" y="20" width="40" height="40"/>
+        <circle cx="130" cy="40" r="2" fill="currentColor"/><circle cx="230" cy="40" r="2" fill="currentColor"/>
+      </svg>
+    </div>
 
     <section id="work" aria-labelledby="work-h">
       <h2 id="work-h">Projects</h2>
       <ul class="projects">
-        <li>
-          <h3>FinFlow</h3>
-          <p>A personal finance app for Gen Z to manage ₹10,000 over 30 days. Simulate a decision before spending and see its impact on balance, daily allowance, goals, forecast, risk and financial health. Built with React, TypeScript and Tailwind CSS.</p>
-          <p class="links"><a href="https://github.com/subash452006-a11y/finflow">Source code</a></p>
-        </li>
         <li>
           <h3>SmartEdu AI</h3>
           <p>A career guidance platform for school and college students. Students log in to track subjects, marks, attendance and a weekly timetable, then pick a career goal to see skill gaps and a learning roadmap.</p>
@@ -72,12 +102,24 @@
       <h2 id="cert-h">Certifications</h2>
       <ul class="projects">
         <li>
+          <h3>30 Days MasterClass in Full Stack Development</h3>
+          <p class="meta">NoviTech R&amp;D Private Limited, Coimbatore. 22 January to 25 February 2026. Certificate of completion.</p>
+        </li>
+        <li>
           <h3>Programming in Java</h3>
           <p class="meta">NPTEL, IIT Kharagpur. July to October 2026. Elite, 94%.</p>
         </li>
         <li>
           <h3>Database Management System</h3>
           <p class="meta">NPTEL, IIT Kharagpur. January to March 2026. Elite, 64%.</p>
+        </li>
+        <li>
+          <h3>Prompt Run 2026</h3>
+          <p class="meta">Organised by Frontend Arena on Unstop. Certificate of participation.</p>
+        </li>
+        <li>
+          <h3>CodeRush</h3>
+          <p class="meta">Organised by NIMBLUX on Unstop. Certificate of participation.</p>
         </li>
       </ul>
     </section>
@@ -91,8 +133,20 @@
 
     <section id="how" aria-labelledby="how-h">
       <h2 id="how-h">How I built this</h2>
-      <p>Built with plain HTML, CSS and JavaScript, with help from AI tools. I customised the design, wrote the content and deployed it myself. The kolam dots in the hero are drawn on a small canvas, so move your cursor or finger over them.</p>
+      <p>Built with plain HTML, CSS and JavaScript, with help from AI tools. I customised the design, wrote the content and deployed it myself. The kolam dots in the hero are drawn on a small canvas. They drift on their own, and you can move your cursor or finger over them to light them up. The kolam motifs between sections are small SVGs. With reduced motion turned on, the dots stay still.</p>
     </section>
+
+    <div class="kolam-divider" aria-hidden="true">
+      <svg viewBox="0 0 360 80" focusable="false">
+        <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".55">
+          <line x1="10" y1="40" x2="74" y2="40"/><line x1="286" y1="40" x2="350" y2="40"/>
+        </g>
+        <use href="#kolam-motif" x="80" y="20" width="40" height="40"/>
+        <use href="#kolam-motif" x="140" y="0" width="80" height="80"/>
+        <use href="#kolam-motif" x="240" y="20" width="40" height="40"/>
+        <circle cx="130" cy="40" r="2" fill="currentColor"/><circle cx="230" cy="40" r="2" fill="currentColor"/>
+      </svg>
+    </div>
 
     <section id="contact" aria-labelledby="contact-h">
       <h2 id="contact-h">Contact</h2>
@@ -110,27 +164,45 @@
 
   <script>
     (function () {
-      var c = document.getElementById('kolam'), x = c.getContext('2d');
-      var S = 44, R = 140, dots = [], mx = -999, my = -999, w, h, busy = false;
-      var dpr = window.devicePixelRatio || 1;
+      var c = document.getElementById('kolam'), x = c.getContext('2d'), hero = c.parentNode;
+      var S = 44, R = 140, dots = [], mx = -999, my = -999, w = 0, h = 0;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
       var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var onScreen = true, raf = 0, busy = false;
+
       function size() {
-        var r = c.parentNode.getBoundingClientRect();
+        var r = hero.getBoundingClientRect();
+        // Rebuild only when the width really changes or the height changes a lot.
+        // Mobile address bars fire small resize events while scrolling.
+        if (w && Math.round(r.width) === Math.round(w) && Math.abs(r.height - h) < 120) return;
         w = r.width; h = r.height;
         c.width = w * dpr; c.height = h * dpr;
-                x.setTransform(dpr, 0, 0, dpr, 0, 0);
+        x.setTransform(dpr, 0, 0, dpr, 0, 0);
         dots = [];
         for (var j = 0; j * S / 2 < h + S; j++)
           for (var i = 0; i * S < w + S; i++) dots.push([i * S + (j % 2 ? S / 2 : 0), j * S / 2]);
-        draw();
+        draw(performance.now());
       }
-      function draw() {
-        busy = false;
+
+      // Light points: the finger/cursor if it is on the hero, otherwise two that drift on their own.
+      function points(t) {
+        if (mx > -900) return [[mx, my]];
+        if (calm) return [[w * 0.72, h * 0.55]];
+        return [
+          [w * (0.5 + 0.38 * Math.sin(t / 2600)), h * (0.5 + 0.3 * Math.sin(t / 1900 + 1))],
+          [w * (0.5 + 0.3 * Math.sin(t / 3100 + 2.4)), h * (0.5 + 0.34 * Math.cos(t / 2300))]
+        ];
+      }
+
+      function draw(t) {
         x.clearRect(0, 0, w, h);
-        var near = [];
+        var pts = points(t), near = [];
         for (var k = 0; k < dots.length; k++) {
-          var d = dots[k], dist = Math.hypot(d[0] - mx, d[1] - my), n = Math.max(0, 1 - dist / R);
-          if (n > 0) near.push(d);
+          var d = dots[k], n = 0;
+          for (var p = 0; p < pts.length; p++) {
+            n = Math.max(n, 1 - Math.hypot(d[0] - pts[p][0], d[1] - pts[p][1]) / R);
+          }
+          if (n > 0) near.push(d); else n = 0;
           x.beginPath();
           x.arc(d[0], d[1], 2 + n * 3.5, 0, 6.2832);
           x.fillStyle = n > 0.4 ? 'rgba(255,143,179,' + (0.5 + n / 2) + ')' : 'rgba(242,182,50,' + (0.3 + n) + ')';
@@ -143,16 +215,34 @@
               x.beginPath(); x.moveTo(near[a][0], near[a][1]); x.lineTo(near[b][0], near[b][1]); x.stroke();
             }
       }
+
+      function loop(t) {
+        draw(t);
+        raf = (onScreen && !document.hidden) ? requestAnimationFrame(loop) : 0;
+      }
+      function start() { if (!calm && !raf && onScreen && !document.hidden) raf = requestAnimationFrame(loop); }
+
       function move(e) {
         var r = c.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top;
-        if (!busy) { busy = true; requestAnimationFrame(draw); }
+        if (calm && !busy) { busy = true; requestAnimationFrame(function () { busy = false; draw(performance.now()); }); }
       }
+      function leave() { mx = my = -999; if (calm) draw(performance.now()); }
+
       window.addEventListener('resize', size);
       size();
-      if (!calm) {
-        c.parentNode.addEventListener('pointermove', move);
-        c.parentNode.addEventListener('pointerleave', function () { mx = my = -999; draw(); });
+
+      hero.addEventListener('pointermove', move);
+      hero.addEventListener('pointerdown', move);
+      hero.addEventListener('pointerleave', leave);
+      hero.addEventListener('pointercancel', leave);
+      hero.addEventListener('pointerup', function (e) { if (e.pointerType !== 'mouse') leave(); });
+
+      // Pause the animation when the hero is off screen or the tab is hidden.
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; start(); }).observe(hero);
       }
+      document.addEventListener('visibilitychange', start);
+      start();
     })();
   </script>
 
@@ -161,8 +251,7 @@
     var en = document.getElementById('intro-en');
     var ta = document.getElementById('intro-ta');
     btn.addEventListener('click', function () {
-      var showTamil = btn.getAttribute('aria-pressed') === 'false';
-      btn.setAttribute('aria-pressed', String(showTamil));
+      var showTamil = !en.hidden;
       en.hidden = showTamil;
       ta.hidden = !showTamil;
       btn.textContent = showTamil ? 'Read in English' : 'தமிழில் படி';

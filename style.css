@@ -9,7 +9,7 @@
   --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 * { box-sizing: border-box; }
-html { overflow-anchor: none; }
+html { overflow-anchor: none; scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--ink);
@@ -19,6 +19,7 @@ body {
 a { color: var(--turmeric); text-underline-offset: 4px; }
 a:hover { color: var(--pink); }
 :focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; border-radius: 2px; }
+main:focus { outline: none; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip { position: absolute; left: 1rem; top: -4rem; background: var(--turmeric); color: var(--ink); padding: .5rem 1rem; z-index: 10; }
 .skip:focus { top: 1rem; }
@@ -46,7 +47,7 @@ h1 {
   color: var(--turmeric);
   animation: rise .9s ease-out both;
 }
-.intro { font-size: clamp(1.15rem, 2.5vw, 1.5rem); max-width: 34rem; margin: 0 0 1.5rem;  }
+.intro { font-size: clamp(1.15rem, 2.5vw, 1.5rem); max-width: 34rem; margin: 0 0 1.5rem; }
 .intro[lang="ta"] { font-family: var(--font-head); font-weight: 500; }
 .lang {
   font: 500 1rem var(--font-body);
@@ -57,15 +58,21 @@ h1 {
   padding: .6rem 1.4rem;
   cursor: pointer;
 }
+.lang[lang="ta"] { font-family: var(--font-head); }
 .lang:hover { background: var(--jasmine); color: var(--ink); }
 
 /* Sections */
 main, footer { max-width: 52rem; margin: 0 auto; padding: 0 1.25rem; }
-section { padding: 4.5rem 0 1rem; }
+section { padding: 2.5rem 0 1rem; }
+section:first-child { padding-top: 4.5rem; }
 h2 { font: 800 clamp(1.8rem, 4vw, 2.4rem)/1.2 var(--font-head); margin: 0 0 1.25rem; color: var(--turmeric); }
 h3 { font: 800 1.35rem/1.3 var(--font-head); margin: 0 0 .4rem; }
 p { max-width: 38rem; margin: 0 0 1rem; }
 ul { list-style: none; padding: 0; margin: 0; }
+
+/* Kolam divider between sections */
+.kolam-divider { display: flex; justify-content: center; padding: 3rem 0 .5rem; color: var(--pink); }
+.kolam-divider svg { width: min(100%, 320px); height: auto; overflow: visible; }
 
 .projects li { padding: 1.75rem 0; border-top: 1px solid rgba(246,243,234,.25); }
 .projects li:last-child { border-bottom: 1px solid rgba(246,243,234,.25); }
@@ -82,5 +89,6 @@ footer { padding-top: 4rem; padding-bottom: 3rem; color: var(--muted); }
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   h1 { animation: none; }
+  html { scroll-behavior: auto; }
 }
 @media (max-width: 480px) { nav { justify-content: flex-start; } .hero { min-height: 85vh; } }
