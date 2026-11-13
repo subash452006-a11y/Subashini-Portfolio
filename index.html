@@ -8,7 +8,8 @@
   <meta name="theme-color" content="#14183a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500;800&family=DM+Sans:wght@400;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500;800&family=DM+Sans:wght@400;700&display=swap"></noscript>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌼</text></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -170,12 +171,11 @@
       var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var onScreen = true, raf = 0, busy = false;
 
-      function size() {
-        var r = hero.getBoundingClientRect();
+      function size(rw, rh) {
         // Rebuild only when the width really changes or the height changes a lot.
         // Mobile address bars fire small resize events while scrolling.
-        if (w && Math.round(r.width) === Math.round(w) && Math.abs(r.height - h) < 120) return;
-        w = r.width; h = r.height;
+        if (w && Math.round(rw) === Math.round(w) && Math.abs(rh - h) < 120) return;
+        w = rw; h = rh;
         c.width = w * dpr; c.height = h * dpr;
         x.setTransform(dpr, 0, 0, dpr, 0, 0);
         dots = [];
@@ -228,8 +228,15 @@
       }
       function leave() { mx = my = -999; if (calm) draw(performance.now()); }
 
-      window.addEventListener('resize', size);
-      size();
+      // ResizeObserver reports the canvas size without forcing a layout read.
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(function (es) {
+          var r = es[0].contentRect; size(r.width, r.height);
+        }).observe(c);
+      } else {
+        window.addEventListener('resize', function () { size(c.clientWidth, c.clientHeight); });
+        size(c.clientWidth, c.clientHeight);
+      }
 
       hero.addEventListener('pointermove', move);
       hero.addEventListener('pointerdown', move);

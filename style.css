@@ -50,7 +50,7 @@ h1 {
 .intro { font-size: clamp(1.15rem, 2.5vw, 1.5rem); max-width: 34rem; margin: 0 0 1.5rem; }
 .intro[lang="ta"] { font-family: var(--font-head); font-weight: 500; }
 .lang {
-  font: 500 1rem var(--font-body);
+  font: 400 1rem var(--font-body);
   color: var(--jasmine);
   background: transparent;
   border: 2px solid var(--jasmine);
@@ -86,7 +86,7 @@ ul { list-style: none; padding: 0; margin: 0; }
 
 footer { padding-top: 4rem; padding-bottom: 3rem; color: var(--muted); }
 
-@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { transform: translateY(24px); } to { transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   h1 { animation: none; }
   html { scroll-behavior: auto; }
