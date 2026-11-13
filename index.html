@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subashini | Web Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Subashini, a web developer who builds clear, fast and accessible websites.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌼</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#work">Skip to projects</a>
+
+  <header class="hero">
+    <canvas id="kolam" aria-hidden="true"></canvas>
+    <nav aria-label="Main">
+      <a href="#work">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hero-body">
+      <p class="en-name">Subashini, web developer</p>
+      <h1><span lang="ta">சுபாஷினி</span><span class="sr"> (Subashini)</span></h1>
+      <p class="intro" id="intro-en">I'm Subashini. I build websites that load fast, read clearly and work on every phone.</p>
+      <p class="intro" id="intro-ta" lang="ta" hidden>நான் சுபாஷினி. வேகமாகவும் தெளிவாகவும் எல்லா போனிலும் வேலை செய்யும் இணையதளங்களை உருவாக்குகிறேன்.</p>
+      <button class="lang" id="toggle" type="button" aria-pressed="false">தமிழில் படி</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">About</h2>
+      <p>I'm a [your course / role] learning web development by building real things. I care about simple layouts, readable text and pages that stay usable on slow connections. This portfolio is hand-written HTML and CSS, with a little JavaScript.</p>
+    </section>
+
+    <section id="work" aria-labelledby="work-h">
+      <h2 id="work-h">Projects</h2>
+      <ul class="projects">
+        <li>
+          <h3>FinFlow</h3>
+          <p>A personal finance app for Gen Z to manage ₹10,000 over 30 days. Simulate a decision before spending and see its impact on balance, daily allowance, goals, forecast, risk and financial health. Built with React, TypeScript and Tailwind CSS.</p>
+          <p class="links"><a href="https://github.com/subash452006-a11y/finflow">Source code</a></p>
+        </li>
+        <li>
+          <h3>SmartEdu AI</h3>
+          <p>A career guidance platform for school and college students. Students log in to track subjects, marks, attendance and a weekly timetable, then pick a career goal to see skill gaps and a learning roadmap.</p>
+          <p class="links"><a href="https://smartedu-ai-nu.vercel.app/">Live site</a> <a href="https://github.com/subash452006-a11y/Smartedu-ai">Source code</a></p>
+        </li>
+        <li>
+          <h3>PocketWise Finance</h3>
+          <p>A money-planning site that helps you see how to spend and save across a ₹10,000 month.</p>
+          <p class="links"><a href="https://subash452006-a11y.github.io/pocketwise-finance/">Live site</a> <a href="https://github.com/subash452006-a11y/pocketwise-finance">Source code</a></p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <ul class="skills">
+        <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Git and GitHub</li><li>Responsive design</li><li>Accessibility basics</li>
+      </ul>
+    </section>
+
+    <section id="how" aria-labelledby="how-h">
+      <h2 id="how-h">How I built this</h2>
+      <p>No template and no framework. Every line is hand-written HTML and CSS, plus a small canvas script that draws the kolam dots in the hero. Move your cursor or finger over it. [Add one line about what you found hard and how you solved it.]</p>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <p>Open to internships, projects and collaboration. Write to me:</p>
+      <ul class="contact">
+        <li><a href="mailto:suba.sh452006@gmail.com">suba.sh452006@gmail.com</a></li>
+        <li><a href="https://github.com/subash452006-a11y">github.com/subash452006-a11y</a></li>
+        <li><a href="https://www.linkedin.com/in/subashini-thangaraj-16672637b/">linkedin.com/in/subashini-thangaraj-16672637b</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer><p>Built by Subashini for One Who Codes 2026.</p></footer>
+
+  <script>
+    (function () {
+      var c = document.getElementById('kolam'), x = c.getContext('2d');
+      var S = 44, R = 140, dots = [], mx = -999, my = -999, w, h, busy = false;
+      var dpr = window.devicePixelRatio || 1;
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function size() {
+        var r = c.parentNode.getBoundingClientRect();
+        w = r.width; h = r.height;
+        c.width = w * dpr; c.height = h * dpr;
+                x.setTransform(dpr, 0, 0, dpr, 0, 0);
+        dots = [];
+        for (var j = 0; j * S / 2 < h + S; j++)
+          for (var i = 0; i * S < w + S; i++) dots.push([i * S + (j % 2 ? S / 2 : 0), j * S / 2]);
+        draw();
+      }
+      function draw() {
+        busy = false;
+        x.clearRect(0, 0, w, h);
+        var near = [];
+        for (var k = 0; k < dots.length; k++) {
+          var d = dots[k], dist = Math.hypot(d[0] - mx, d[1] - my), n = Math.max(0, 1 - dist / R);
+          if (n > 0) near.push(d);
+          x.beginPath();
+          x.arc(d[0], d[1], 2 + n * 3.5, 0, 6.2832);
+          x.fillStyle = n > 0.4 ? 'rgba(255,143,179,' + (0.5 + n / 2) + ')' : 'rgba(242,182,50,' + (0.3 + n) + ')';
+          x.fill();
+        }
+        x.strokeStyle = 'rgba(242,182,50,.6)'; x.lineWidth = 1.5;
+        for (var a = 0; a < near.length; a++)
+          for (var b = a + 1; b < near.length; b++)
+            if (Math.hypot(near[a][0] - near[b][0], near[a][1] - near[b][1]) < S * 0.8) {
+              x.beginPath(); x.moveTo(near[a][0], near[a][1]); x.lineTo(near[b][0], near[b][1]); x.stroke();
+            }
+      }
+      function move(e) {
+        var r = c.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top;
+        if (!busy) { busy = true; requestAnimationFrame(draw); }
+      }
+      window.addEventListener('resize', size);
+      size();
+      if (!calm) {
+        c.parentNode.addEventListener('pointermove', move);
+        c.parentNode.addEventListener('pointerleave', function () { mx = my = -999; draw(); });
+      }
+    })();
+  </script>
+
+  <script>
+    var btn = document.getElementById('toggle');
+    var en = document.getElementById('intro-en');
+    var ta = document.getElementById('intro-ta');
+    btn.addEventListener('click', function () {
+      var showTamil = btn.getAttribute('aria-pressed') === 'false';
+      btn.setAttribute('aria-pressed', String(showTamil));
+      en.hidden = showTamil;
+      ta.hidden = !showTamil;
+      btn.textContent = showTamil ? 'Read in English' : 'தமிழில் படி';
+      btn.lang = showTamil ? 'en' : 'ta';
+    });
+  </script>
+</body>
+</html>
